@@ -17,13 +17,14 @@ jobs:
           PAYLOAD: ${{ toJSON(github.event) }}
           PR_PAYLOAD: ${{ github.event.pull_request }}
         
-      - name: clone branch of PR
-        uses: actions/checkout@master
+      - name: clone repo
+        uses: actions/checkout@v1
 
       - name: make comment 
         run: |
+          ls
           chmod +x ./_action_files/pr_comment.sh
-          ./_action_files/pr_comment.sh "hellow world."
+          ./_action_files/pr_comment.sh "hello world."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
