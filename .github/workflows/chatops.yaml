@@ -23,8 +23,8 @@ jobs:
       - name: make comment 
         run: |
           ls
-          chmod +x ./_action_files/pr_comment.sh
-          ./_action_files/pr_comment.sh "hello world."
+          chmod +x ./prcomm.sh
+          ./prcomm.sh "hello world."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
