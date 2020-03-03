@@ -18,14 +18,11 @@ jobs:
           PR_PAYLOAD: ${{ github.event.pull_request }}
         
       - name: clone branch of PR
-        if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
         uses: actions/checkout@master
-        with:
-          ref: ${{ steps.prcomm.outputs.SHA }}
 
       - name: make comment 
         run: |
-           ./prcomm.sh "hellow world."
+           ./_action_files/pr_comment.sh "hellow world."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
