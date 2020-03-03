@@ -22,7 +22,8 @@ jobs:
 
       - name: make comment 
         run: |
-           ./_action_files/pr_comment.sh "hellow world."
+          chmod +x ./_action_files/pr_comment.sh
+          ./_action_files/pr_comment.sh "hellow world."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
