@@ -1,0 +1,26 @@
+name: Chatops
+on: [issue_comment]
+
+jobs:
+  trigger-chatops:
+    if: github.event.issue.pull_request != null &&  contains(github.event.comment.body, '/preview')
+    env:
+      CHECK_RUN_NAME: "Draft-Site-Build"
+    runs-on: ubuntu-latest
+    steps:
+          
+      - name: see payload
+        run: |
+          echo "FULL PAYLOAD:\n${PAYLOAD}\n"
+          echo "PR_PAYLOAD PAYLOAD:\n${PR_PAYLOAD}"
+        env:
+          PAYLOAD: ${{ toJSON(github.event) }}
+          PR_PAYLOAD: ${{ github.event.pull_request }}
+        
+      - name: make comment 
+        run: |
+           ./prcomm.sh "hellow world."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+
