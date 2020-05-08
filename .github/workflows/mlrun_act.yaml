@@ -21,9 +21,10 @@ jobs:
     - name: Install mlrun
       run: python -m pip install git+https://github.com/mlrun/mlrun.git@gitops
     - name: Submit project
-      run: python -m mlrun project -n skgh -u ./project.yaml -r main -p v3io:///users/admin/kfp
+      run: python -m mlrun project -n skgh -u ./project.yaml -r main -p v3io:///users/admin/kfp -x issue="${{ github.event.issue.number }}"
       env:
         V3IO_USERNAME: admin
         V3IO_API: ${{ secrets.V3IO_API }}
         V3IO_ACCESS_KEY: ${{ secrets.V3IO_ACCESS_KEY }}
         MLRUN_DBPATH: ${{ secrets.MLRUN_DBPATH }}
+        DEFAULT_DOCKER_REGISTRY: ${{ secrets.DEFAULT_DOCKER_REGISTRY }}
