@@ -1,5 +1,5 @@
 
-name: aml-train-deploy-workflow
+name: mlrun-project-workflow
 on:
   push:
     branches:
