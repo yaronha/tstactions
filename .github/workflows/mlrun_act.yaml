@@ -23,7 +23,7 @@ jobs:
     - name: Submit project
       run: python -m mlrun project -n skgh -u ./project.yaml -r main -p v3io:///users/admin/kfp
       env:
-        V3IO_USER: admin
+        V3IO_USERNAME: admin
         V3IO_API: ${{ secrets.V3IO_API }}
         V3IO_ACCESS_KEY: ${{ secrets.V3IO_ACCESS_KEY }}
         MLRUN_DBPATH: ${{ secrets.MLRUN_DBPATH }}
