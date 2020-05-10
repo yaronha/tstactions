@@ -4,7 +4,7 @@ on: [issue_comment]
 
 jobs:
   submit-project:
-    if: github.event.issue.pull_request != null &&  contains(github.event.comment.body, '/run')
+    if: github.event.issue.pull_request != null &&  startsWith(github.event.comment.body, '/run')
     runs-on: ubuntu-latest
 
     steps:
@@ -16,11 +16,13 @@ jobs:
         architecture: 'x64'
     
     - name: tst
-      run: echo "${{ slice(github.event.comment.body, 3)}}"
+      env:
+        CMD: ${{ github.event.comment.body}} 
+      run: echo "${CMD:2}"
     - name: Install mlrun
       run: python -m pip install git+https://github.com/mlrun/mlrun.git@gitops
     - name: Submit project
-      run: echo #python -m mlrun project -u ./project.yaml -r main --git-issue "${{ github.event.issue.number }}" --git-repo ${GITHUB_REPOSITORY}
+      run: echo "XX" #python -m mlrun project -u ./project.yaml -r main --git-issue "${{ github.event.issue.number }}" --git-repo ${GITHUB_REPOSITORY}
       env:
         V3IO_USERNAME: admin
         V3IO_API: ${{ secrets.V3IO_API }}
