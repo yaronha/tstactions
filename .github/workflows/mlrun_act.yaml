@@ -16,7 +16,7 @@ jobs:
         architecture: 'x64'
     
     - name: tst
-      run: echo "${{ github.event.comment.body.slice(3)}}"
+      run: echo "${{ slice(github.event.comment.body, 3)}}"
     - name: Install mlrun
       run: python -m pip install git+https://github.com/mlrun/mlrun.git@gitops
     - name: Submit project
