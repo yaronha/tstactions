@@ -15,14 +15,10 @@ jobs:
         python-version: '3.6'
         architecture: 'x64'
     
-    - name: tst
-      env:
-        CMD: ${{ github.event.comment.body}} 
-      run: echo ${CMD:2}
     - name: Install mlrun
       run: python -m pip install git+https://github.com/mlrun/mlrun.git@gitops
     - name: Submit project
-      run: echo $V3IO_USERNAME #python -m mlrun project -u ./project.yaml -r main --git-issue "${{ github.event.issue.number }}" --git-repo ${GITHUB_REPOSITORY}
+      run: python -m mlrun project -u ./project.yaml --git-issue "${{ github.event.issue.number }}" --git-repo ${GITHUB_REPOSITORY} ${CMD:5}
       env:
         V3IO_USERNAME: admin
         V3IO_API: ${{ secrets.V3IO_API }}
