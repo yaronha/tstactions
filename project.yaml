@@ -13,7 +13,7 @@ functions:
       args: []
       image: mlrun/ml-models
       env: []
-      default_handler: ''
+      default_handler: 'iris_generator'
       entry_points:
         iris_generator:
           name: iris_generator
